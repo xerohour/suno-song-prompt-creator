@@ -91,7 +91,7 @@ Suno's element refs go stale.
 
 ## Milestones
 
-- [ ] **M1 — Auth:** logged-in session on suno.com verified, tier noted.
+- [x] **M1 — Auth:** logged-in session on suno.com verified (Google: Xerohour@gmail.com / @xerohour; Pro Plan monthly, 2450 credits + 27 downloads as of 2026-09-16; Advanced/Custom mode accessible).
 - [ ] **M2 — Dry run:** form fills correctly on the live create page
   (fill everything, screenshot, confirm with user *before* Create).
 - [ ] **M3 — First song:** full run → MP3 delivered to the user.
