@@ -4,51 +4,79 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Suno Song Prompt Creator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <style>
-:root{--bg:#0f0f14;--card:#1a1a24;--accent:#8b5cf6;--accent2:#06b6d4;--text:#e5e7eb;--muted:#9ca3af;--border:#2d2d3d}
+:root{--bg:#000;--card:rgba(0,14,4,.88);--accent:#00ff41;--accent2:#00e5ff;--accent3:#ff2fb3;--text:#c9ffd6;--muted:#3f7a4d;--border:#0e3a18;--glow:0 0 6px rgba(0,255,65,.9),0 0 22px rgba(0,255,65,.35)}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.5;min-height:100vh}
-header{background:linear-gradient(135deg,#1e1b4b,#312e81);padding:2rem 1rem;text-align:center;border-bottom:1px solid var(--border)}
-header h1{font-size:2.2rem;margin-bottom:.5rem;background:linear-gradient(90deg,#a78bfa,#22d3ee);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-header p{color:var(--muted);max-width:600px;margin:0 auto}
-nav{display:flex;gap:.5rem;justify-content:center;padding:1rem;background:#15151f;position:sticky;top:0;z-index:10;border-bottom:1px solid var(--border);flex-wrap:wrap}
-nav button{background:var(--card);border:1px solid var(--border);color:var(--text);padding:.6rem 1.2rem;border-radius:999px;cursor:pointer;transition:.2s}
-nav button.active,nav button:hover{background:var(--accent);border-color:var(--accent)}
-main{max-width:1100px;margin:0 auto;padding:2rem 1rem}
+html{background:#000}
+body{background:#000;color:var(--text);font-family:'Share Tech Mono',ui-monospace,monospace;line-height:1.5;min-height:100vh;position:relative;z-index:0}
+#matrixRain{position:fixed;inset:0;z-index:-2;opacity:.55}
+.scanlines{position:fixed;inset:0;z-index:60;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(0,0,0,.22) 0 1px,transparent 1px 3px)}
+.vignette{position:fixed;inset:0;z-index:59;pointer-events:none;background:radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.55) 100%)}
+header{position:relative;overflow:hidden;padding:3rem 1rem 2.5rem;text-align:center;border-bottom:1px solid var(--accent);box-shadow:0 0 24px rgba(0,255,65,.25),inset 0 -1px 12px rgba(0,255,65,.12);background:#000}
+#hero3d{position:absolute;inset:0;width:100%;height:100%;opacity:.55}
+.hero-inner{position:relative;z-index:1}
+header h1{font-size:clamp(1.5rem,5vw,2.6rem);margin-bottom:.6rem;color:var(--accent);text-shadow:var(--glow);letter-spacing:.06em}
+header h1 .cursor{animation:blink 1s steps(1) infinite;color:var(--accent2)}
+@keyframes blink{50%{opacity:0}}
+header p{color:var(--muted);max-width:640px;margin:0 auto}
+header p strong{color:var(--accent)}
+nav{display:flex;gap:.5rem;justify-content:center;padding:.9rem;background:rgba(0,10,3,.92);position:sticky;top:0;z-index:10;border-bottom:1px solid var(--border);flex-wrap:wrap}
+nav button{background:transparent;border:1px solid var(--border);color:var(--accent);padding:.55rem 1.1rem;cursor:pointer;transition:.2s;font-family:inherit;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase}
+nav button.active,nav button:hover{background:var(--accent);color:#000;border-color:var(--accent);box-shadow:var(--glow)}
+main{max-width:1100px;margin:0 auto;padding:2rem 1rem;position:relative;z-index:1}
 .tab{display:none}
 .tab.active{display:block;animation:fadeIn .3s}
 @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin-bottom:1.5rem}
-.card h2{margin-bottom:1rem;color:#c4b5fd}
+.card{background:var(--card);border:1px solid var(--accent);border-radius:2px;padding:1.5rem;margin-bottom:1.5rem;box-shadow:0 0 18px rgba(0,255,65,.12),inset 0 0 40px rgba(0,255,65,.03);transition:box-shadow .25s}
+.card:hover{box-shadow:0 0 28px rgba(0,255,65,.22),inset 0 0 40px rgba(0,255,65,.05)}
+.card h2{margin-bottom:1rem;color:var(--accent);text-shadow:0 0 10px rgba(0,255,65,.6);letter-spacing:.06em}
+.card h2::before{content:'> ';color:var(--accent2)}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
-label{display:block;font-size:.85rem;color:var(--muted);margin-bottom:.35rem;text-transform:uppercase;letter-spacing:.05em}
-input[type=text],select,textarea{width:100%;background:#0f0f14;border:1px solid var(--border);color:var(--text);padding:.7rem;border-radius:8px;font-size:1rem}
+label{display:block;font-size:.78rem;color:var(--muted);margin-bottom:.35rem;text-transform:uppercase;letter-spacing:.14em}
+input[type=text],select,textarea{width:100%;background:#000;border:1px solid var(--border);color:var(--accent);padding:.7rem;font-size:1rem;font-family:inherit;border-radius:0}
+input[type=text]:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent);box-shadow:var(--glow)}
+select option{background:#000}
 textarea{min-height:100px;resize:vertical;font-family:inherit}
 .check-group{display:flex;flex-wrap:wrap;gap:.5rem}
-.check-group label{background:#0f0f14;border:1px solid var(--border);padding:.4rem .8rem;border-radius:999px;cursor:pointer;text-transform:none;letter-spacing:normal;font-size:.9rem;color:var(--text)}
+.check-group label{background:#000;border:1px solid var(--border);padding:.4rem .8rem;cursor:pointer;text-transform:none;letter-spacing:normal;font-size:.9rem;color:var(--muted);margin:0}
 .check-group input{display:none}
-.check-group label:has(input:checked){background:var(--accent);border-color:var(--accent);color:white}
-.output{background:#0a0a0f;border:1px solid var(--accent);border-radius:8px;padding:1rem;white-space:pre-wrap;font-family:ui-monospace,monospace;min-height:120px;margin-top:1rem}
-.btn{background:var(--accent);color:white;border:none;padding:.7rem 1.4rem;border-radius:8px;cursor:pointer;font-size:1rem;margin-top:1rem;transition:.2s}
-.btn:hover{background:#7c3aed}
-.btn.secondary{background:#2d2d3d}
+.check-group label:has(input:checked){background:var(--accent);border-color:var(--accent);color:#000;box-shadow:var(--glow)}
+.output{background:#000;border:1px solid var(--accent);padding:1rem;white-space:pre-wrap;font-family:inherit;min-height:120px;margin-top:1rem;color:var(--accent);text-shadow:0 0 6px rgba(0,255,65,.5);box-shadow:inset 0 0 24px rgba(0,255,65,.06)}
+.btn{background:transparent;color:var(--accent);border:1px solid var(--accent);padding:.7rem 1.4rem;cursor:pointer;font-size:1rem;margin-top:1rem;transition:.2s;font-family:inherit;letter-spacing:.06em;text-transform:uppercase;border-radius:0}
+.btn:hover{background:var(--accent);color:#000;box-shadow:var(--glow)}
+.btn.secondary{border-color:var(--muted);color:var(--muted)}
+.btn.secondary:hover{background:var(--muted);color:#000;box-shadow:none}
 .btn.small{padding:.4rem .8rem;font-size:.85rem;margin-top:.5rem}
 .char-count{font-size:.8rem;color:var(--muted);text-align:right;margin-top:.3rem}
-.warning{background:#451a03;border:1px solid #9a3412;border-radius:8px;padding:1rem;margin:1rem 0;color:#fdba74}
-.section-item{background:#0f0f14;border:1px solid var(--border);border-radius:8px;padding:1rem;margin-bottom:.8rem}
-.section-item h4{color:#67e8f9;margin-bottom:.5rem}
-.artist-card{background:#0f0f14;border:1px solid var(--border);border-radius:8px;padding:1rem;margin-bottom:1rem}
-.artist-card h3{color:#c4b5fd}
+.warning{background:rgba(20,0,12,.9);border:1px solid var(--accent3);padding:1rem;margin:1rem 0;color:#ff9ed2;box-shadow:0 0 16px rgba(255,47,179,.25)}
+.warning strong{color:var(--accent3)}
+.section-item{background:#000;border:1px solid var(--border);padding:1rem;margin-bottom:.8rem;border-left:3px solid var(--accent)}
+.section-item h4{color:var(--accent2);margin-bottom:.5rem;text-shadow:0 0 8px rgba(0,229,255,.5)}
+.artist-card{background:#000;border:1px solid var(--border);padding:1rem;margin-bottom:1rem;transition:.2s}
+.artist-card:hover{border-color:var(--accent);box-shadow:0 0 16px rgba(0,255,65,.2)}
+.artist-card h3{color:var(--accent);text-shadow:0 0 8px rgba(0,255,65,.5)}
 .artist-card .meta{font-size:.85rem;color:var(--muted);margin:.3rem 0}
 .search-bar{margin-bottom:1.5rem}
-footer{text-align:center;padding:2rem;color:var(--muted);font-size:.85rem}
-.kbd{background:#2d2d3d;padding:.2rem .5rem;border-radius:4px;font-family:monospace;font-size:.9em}
+footer{text-align:center;padding:2rem;color:var(--muted);font-size:.85rem;position:relative;z-index:1}
+.kbd{background:#000;border:1px solid var(--border);padding:.2rem .5rem;font-family:inherit;font-size:.9em;color:var(--accent2)}
+a{color:var(--accent2)}
+::selection{background:var(--accent);color:#000}
 </style>
 </head>
 <body>
+<canvas id="matrixRain"></canvas>
+<div class="vignette"></div>
+<div class="scanlines"></div>
 <header>
-<h1>🎵 Suno Song Prompt Creator</h1>
+<canvas id="hero3d"></canvas>
+<div class="hero-inner">
+<h1>&gt; SUNO_SONG_PROMPT_CREATOR<span class="cursor">_</span></h1>
 <p>Build perfect Suno AI prompts using the wisdom of the <strong>SUNO-Bible</strong>. Craft style prompts, structure lyrics with proper tags, and escape the Pop Gravity Well.</p>
+</div>
 </header>
 <nav>
 <button class="active" onclick="showTab('style')">Style Builder</button>
@@ -183,7 +211,7 @@ footer{text-align:center;padding:2rem;color:var(--muted);font-size:.85rem}
 </div>
 </div>
 </main>
-<footer>Built from the SUNO-Bible • Craft, copy, create in Suno AI • MIT</footer>
+<footer>// Built from the SUNO-Bible • Craft, copy, create in Suno AI • MIT</footer>
 <script>
 let sections=[];
 let artistDB=[];
@@ -313,6 +341,64 @@ document.getElementById('styleOutput').textContent=a.prompt;
 document.getElementById('styleCount').textContent=`${a.prompt.length} / 1000 chars`;
 showTab('style');window.scrollTo(0,0);alert(`Loaded ${a.name} prompt into Style Builder!`);
 }
+/* ===== MATRIX RAIN: falling musical symbols ===== */
+(function(){
+var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+var cv=document.getElementById('matrixRain'),cx=cv.getContext('2d');
+var glyphs='♪♫♬♩𝄞𝄢𝅘𝅥𝅗𝅥01<>*+#';
+var W,H,cols,drops;
+function size(){W=cv.width=innerWidth;H=cv.height=innerHeight;cols=Math.ceil(W/20);drops=[];for(var i=0;i<cols;i++)drops.push(Math.random()*-60);}
+size();addEventListener('resize',size);
+cx.font='15px "Share Tech Mono",monospace';
+function frame(){
+cx.fillStyle='rgba(0,0,0,.09)';cx.fillRect(0,0,W,H);
+for(var i=0;i<cols;i++){
+var g=glyphs[Math.floor(Math.random()*glyphs.length)];
+var r=Math.random();
+cx.fillStyle=r<0.03?'#00ff41':(r<0.12?'#0e7a2c':'#04541a');
+cx.fillText(g,i*20,drops[i]*20);
+if(drops[i]*20>H&&Math.random()>0.976)drops[i]=0;
+drops[i]++;
+}
+}
+if(reduce){frame();}else{setInterval(frame,70);}
+})();
+/* ===== THREE.JS HERO: wireframe construct ===== */
+(function(){
+if(typeof THREE==='undefined')return;
+var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+var cv=document.getElementById('hero3d');
+var renderer=new THREE.WebGLRenderer({canvas:cv,alpha:true,antialias:true});
+var scene=new THREE.Scene();
+var cam=new THREE.PerspectiveCamera(60,1,0.1,100);cam.position.z=7;
+var knot=new THREE.Mesh(new THREE.TorusKnotGeometry(1.7,0.42,110,14),new THREE.MeshBasicMaterial({color:0x00ff41,wireframe:true,transparent:true,opacity:0.5}));
+scene.add(knot);
+var core=new THREE.Mesh(new THREE.IcosahedronGeometry(0.85,1),new THREE.MeshBasicMaterial({color:0x00e5ff,wireframe:true,transparent:true,opacity:0.55}));
+scene.add(core);
+var N=400,pos=new Float32Array(N*3);
+for(var i=0;i<N*3;i++)pos[i]=(Math.random()-0.5)*16;
+var pg=new THREE.BufferGeometry();pg.setAttribute('position',new THREE.BufferAttribute(pos,3));
+var pts=new THREE.Points(pg,new THREE.PointsMaterial({color:0x00ff41,size:0.045,transparent:true,opacity:0.75}));
+scene.add(pts);
+var mx=0,my=0;
+addEventListener('mousemove',function(e){mx=(e.clientX/innerWidth-0.5);my=(e.clientY/innerHeight-0.5);});
+function size(){var w=cv.clientWidth||innerWidth,h=cv.clientHeight||300;renderer.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix();}
+size();addEventListener('resize',size);
+var t=Math.random()*10;
+function anim(){
+t+=0.008;
+knot.rotation.x=t*0.5+my*0.6;knot.rotation.y=t+mx*0.8;
+core.rotation.y=-t*1.3;core.rotation.z=t*0.4;
+pts.rotation.y=t*0.05;
+cam.position.x+=(mx*1.2-cam.position.x)*0.04;
+cam.position.y+=(-my*0.8-cam.position.y)*0.04;
+cam.lookAt(0,0,0);
+renderer.render(scene,cam);
+if(!reduce)requestAnimationFrame(anim);
+}
+anim();
+})();
+
 // init
 buildStyle();renderSections();loadArtists();
 </script>
