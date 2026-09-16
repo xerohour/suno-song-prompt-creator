@@ -222,10 +222,39 @@ document.getElementById(id).addEventListener('input',buildStyle);
 });
 document.querySelectorAll('#moods input,#instruments input,#exclusions input').forEach(i=>i.addEventListener('change',buildStyle));
 function copyStyle(){navigator.clipboard.writeText(document.getElementById('styleOutput').textContent);alert('Style prompt copied!')}
+function pick(a){return a[Math.floor(Math.random()*a.length)];}
+function pickN(a,n){const c=[...a];const out=[];while(out.length<n&&c.length){out.push(c.splice(Math.floor(Math.random()*c.length),1)[0]);}return out;}
 function randomize(){
-const decades=['1970s','1980s','1990s','2000s'];const genres=['rock','electronic','hip-hop','orchestral','soul','metal','ambient'];
-document.getElementById('decade').value=decades[Math.floor(Math.random()*decades.length)];
-document.getElementById('genre').value=genres[Math.floor(Math.random()*genres.length)];
+document.querySelectorAll('#moods input, #instruments input, #exclusions input').forEach(c=>c.checked=false);
+const decades=['1950s','1960s','1970s','1980s','1990s','2000s','2010s','2020s'];
+const genres=['rock','pop','hip-hop','electronic','orchestral','soul','R&B','country','folk','metal','punk','jazz','blues','ambient','synthwave','progressive rock','indie','alternative'];
+const subByGenre={'rock':['psychedelic rock','hard rock','garage rock','blues rock'],'pop':['synth-pop','dance pop','art pop'],'hip-hop':['boom bap','trap','conscious rap'],'electronic':['techno','house','downtempo'],'orchestral':['cinematic','neoclassical'],'soul':['neo-soul','funk'],'R&B':['contemporary R&B','new jack swing'],'country':['outlaw country','country-rock'],'folk':['indie folk','americana'],'metal':['doom metal','thrash metal','black metal'],'punk':['post-punk','hardcore punk'],'jazz':['bebop','smooth jazz','fusion'],'blues':['delta blues','electric blues'],'ambient':['dark ambient','drone'],'synthwave':['darksynth','chillwave'],'progressive rock':['prog metal','space rock'],'indie':['indie rock','indie pop'],'alternative':['alt-rock','shoegaze']};
+const countries=['UK','US','US West Coast','Jamaica','Germany','Japan','Nashville'];
+const vocalGenders=['male','female','non-binary','instrumental (no vocals)'];
+const vocalStyles={'male':['British soaring tenor','American gritty baritone','smooth soulful croon'],'female':['American powerhouse soprano','British ethereal alto','smoky jazz phrasing'],'non-binary':['androgynous airy vocals','expressive mixed-range vocals'],'instrumental (no vocals)':['']};
+const tempos=['slow and dreamy','mid-tempo groovy','upbeat energetic','fast and aggressive','epic and cinematic'];
+const productions=['warm analog tape','Abbey Road style','lo-fi grit','polished modern','spacious cinematic','raw garage energy','crisp 80s sheen'];
+const genre=pick(genres);
+document.getElementById('decade').value=pick(decades);
+document.getElementById('genre').value=genre;
+const subs=subByGenre[genre]||[''];
+document.getElementById('subgenre').value=Math.random()<0.7?pick(subs):'';
+document.getElementById('country').value=Math.random()<0.5?pick(countries):'';
+const vg=pick(vocalGenders);
+document.getElementById('vocalGender').value=vg;
+document.getElementById('vocalDetail').value=vg.includes('instrumental')?'':pick(vocalStyles[vg]||['']);
+document.getElementById('tempo').value=pick(tempos);
+document.getElementById('production').value=pick(productions);
+document.getElementById('customEx').value='';
+const moodVals=[...document.querySelectorAll('#moods input')].map(i=>i.value);
+pickN(moodVals,2+Math.floor(Math.random()*3)).forEach(v=>{const el=[...document.querySelectorAll('#moods input')].find(i=>i.value===v);if(el)el.checked=true;});
+const instVals=[...document.querySelectorAll('#instruments input')].map(i=>i.value);
+pickN(instVals,2+Math.floor(Math.random()*3)).forEach(v=>{const el=[...document.querySelectorAll('#instruments input')].find(i=>i.value===v);if(el)el.checked=true;});
+const exVals=[...document.querySelectorAll('#exclusions input')].map(i=>i.value);
+const chosen=[];
+if(genre!=='pop'&&Math.random()<0.7)chosen.push('no pop');
+pickN(exVals.filter(v=>!chosen.includes(v)),Math.floor(Math.random()*2)).forEach(v=>chosen.push(v));
+chosen.forEach(v=>{const el=[...document.querySelectorAll('#exclusions input')].find(i=>i.value===v);if(el)el.checked=true;});
 buildStyle();
 }
 function clearStyle(){document.querySelectorAll('input[type=text],textarea').forEach(i=>{if(i.id!=='secLyrics') i.value=''});document.querySelectorAll('select').forEach(s=>s.selectedIndex=0);document.querySelectorAll('input[type=checkbox]').forEach(c=>c.checked=false);buildStyle();}
