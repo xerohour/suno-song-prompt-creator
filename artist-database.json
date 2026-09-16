@@ -1,0 +1,297 @@
+{
+  "title": "Suno Prompt Engineering Bible - Artist Database",
+  "version": "1.0",
+  "lastUpdated": "2026-02-15",
+  "artists": [
+    {
+      "id": "the-beatles",
+      "name": "The Beatles",
+      "era": "1960s",
+      "producer": "George Martin",
+      "genres": ["rock", "pop", "psychedelic", "baroque pop"],
+      "vocalType": "male British, versatile mix of smooth tenor and raw edge",
+      "prompt": "rock, pop, psychedelic, baroque pop, melodic songwriting, innovative harmonies, shifting structures, psychedelic textures, experimental studio layering, male British vocals, versatile mix of smooth tenor and raw edge, tight harmonies, playful to emotional delivery, distinctive Liverpudlian inflection, optimistic, whimsical, introspective, experimental, warm, bittersweet, jangly guitars, piano, sitar, orchestral strings, brass, tape loops, inventive percussion, layered studio effects, classic 60s Abbey Road production style, warm analog depth, wide stereo panorama, 24 bit resolution, 192 khz sample rate",
+      "description": "Melodic songwriting with innovative harmonies, psychedelic textures, and experimental studio layering"
+    },
+    {
+      "id": "michael-jackson",
+      "name": "Michael Jackson",
+      "era": "1980s",
+      "producer": "Quincy Jones",
+      "genres": ["pop", "funk", "R&B", "dance"],
+      "vocalType": "male American, light tenor with elastic range",
+      "prompt": "pop, funk, R&B, dance, groove-driven, crisp rhythms, polished hooks, intricate vocal layering, genre-fusing arrangements, male American vocals, light tenor with elastic range, sharp falsetto, rhythmic breathy inflections, signature vocal hiccups, highly expressive delivery, energetic, sensual, dramatic, uplifting, infectious, emotionally charged, funky basslines, sharp guitar riffs, bright synths, tight drum machines, brass stabs, layered backing vocals, sleek 80s pop-funk production style, clean and vibrant, punchy low end, wide dynamic range, 24 bit resolution, 192 khz sample rate",
+      "description": "Groove-driven with crisp rhythms, polished hooks, and intricate vocal layering"
+    },
+    {
+      "id": "elvis-presley",
+      "name": "Elvis Presley",
+      "era": "1950s",
+      "producer": "Chips Moman",
+      "genres": ["rock and roll", "rockabilly", "gospel", "country", "R&B"],
+      "vocalType": "male American, rich baritone-tenor blend",
+      "prompt": "rock and roll, rockabilly, gospel, country, R&B, swinging rhythms, blues-rooted riffs, gospel phrasing, raw yet smooth delivery, dynamic stage energy, male American vocals, rich baritone-tenor blend, soulful croon with gritty edge, southern inflection, dramatic vibrato, charismatic and commanding, rebellious, romantic, playful, heartfelt, electrifying, passionate, slap-back echo guitars, upright bass, boogie piano, gospel-style backing vocals, early rock drums, occasional orchestral flourishes, authentic Sun Studio era production style, warm analog tape feel, clear presence, balanced low mids, 24 bit resolution, 192 khz sample rate",
+      "description": "Raw yet smooth delivery with blues-rooted riffs and gospel phrasing"
+    },
+    {
+      "id": "pink-floyd",
+      "name": "Pink Floyd",
+      "era": "1970s",
+      "producer": "Alan Parsons",
+      "genres": ["progressive rock", "psychedelic rock", "art rock"],
+      "vocalType": "male British, haunting baritone and smooth tenor",
+      "prompt": "progressive rock, psychedelic rock, art rock, extended compositions, conceptual storytelling, atmospheric soundscapes, experimental effects, layered arrangements, male British vocals, blend of haunting baritone and smooth tenor, melancholic, detached yet emotional, often harmonized with ethereal textures, dreamlike, introspective, mysterious, dramatic, expansive, melancholic, lush guitar tones, analog synths, tape effects, atmospheric keyboards, spacious drums, orchestral embellishments, ambient sound design, iconic 70s progressive production style, spacious and immersive, crystal clarity, wide stereo depth, 24 bit resolution, 192 khz sample rate",
+      "description": "Extended compositions with conceptual storytelling and atmospheric soundscapes"
+    },
+    {
+      "id": "queen",
+      "name": "Queen",
+      "era": "1970s",
+      "producer": "Roy Thomas Baker",
+      "genres": ["rock", "glam rock", "progressive rock", "hard rock"],
+      "vocalType": "male British, soaring tenor with operatic range",
+      "prompt": "rock, glam rock, progressive rock, hard rock, theatrical arrangements, multi-layered harmonies, genre-bending experimentation, dynamic shifts, operatic rock fusion, male British vocals, soaring tenor with operatic range, powerful belts, dramatic falsetto, flamboyant and theatrical, uniquely expressive timbre, majestic, dramatic, playful, intense, triumphant, emotional, layered electric guitars with harmonized leads, piano, stadium drums, synthesizers, orchestral textures, stacked vocal choirs, grand 70s rock opera production style, bold and expansive, wide stereo, crisp highs and thunderous lows, 24 bit resolution, 192 khz sample rate",
+      "description": "Theatrical arrangements with multi-layered harmonies and operatic rock fusion"
+    },
+    {
+      "id": "elton-john",
+      "name": "Elton John",
+      "era": "1970s",
+      "producer": "Gus Dudgeon",
+      "genres": ["rock", "pop", "glam rock", "soft rock"],
+      "vocalType": "male British, warm tenor with husky edge",
+      "prompt": "rock, pop, glam rock, soft rock, piano-driven songwriting, theatrical flair, strong melodies, lush orchestrations, flamboyant pop hooks, male British vocals, warm tenor with husky edge, soulful and emotive, powerful belts, subtle vibrato, expressive phrasing with English inflection, uplifting, dramatic, introspective, celebratory, bittersweet, grand piano, layered guitars, rich orchestral arrangements, gospel choirs, steady rock drums, bright synths in later work, lush 70s symphonic rock production style, polished and full-bodied, clear piano presence, wide stereo depth, 24 bit resolution, 192 khz sample rate",
+      "description": "Piano-driven songwriting with theatrical flair and lush orchestrations"
+    },
+    {
+      "id": "led-zeppelin",
+      "name": "Led Zeppelin",
+      "era": "1970s",
+      "producer": "Eddy Kramer",
+      "genres": ["hard rock", "blues rock", "folk rock"],
+      "vocalType": "male British, soaring high tenor",
+      "prompt": "hard rock, blues rock, folk rock, heavy riffs, bluesy improvisation, shifting dynamics, mystical lyrics, pioneering hard rock sound, male British vocals, soaring high tenor, raw and blues-inflected, powerful wails, sensual and primal delivery, epic, mystical, earthy, rebellious, intense, hypnotic, thunderous drums, distorted bluesy guitars, acoustic folk elements, layered bass, atmospheric effects, occasional orchestration, iconic 70s rock production style, warm analog grit, thunderous low end, natural room depth, 24 bit resolution, 192 khz sample rate",
+      "description": "Heavy riffs with bluesy improvisation and mystical, shifting dynamics"
+    },
+    {
+      "id": "whitney-houston",
+      "name": "Whitney Houston",
+      "era": "1980s",
+      "producer": "Narada Michael Walden",
+      "genres": ["pop", "soul", "R&B", "gospel"],
+      "vocalType": "female American, mezzo-soprano with three-octave range",
+      "prompt": "pop, soul, R&B, gospel, power ballads, polished pop-soul, lush arrangements, soaring melodic phrasing, gospel-rooted expression, female American vocals, mezzo-soprano with three-octave range, crystalline clarity, effortless belts, smooth vibrato, emotional and commanding delivery, romantic, uplifting, dramatic, inspirational, heartfelt, soulful, grand piano, shimmering synths, orchestral strings, gospel choirs, clean pop drums, polished basslines, radiant 80s pop-soul production style, pristine and powerful, clear highs, warm midrange, wide dynamic range, 24 bit resolution, 192 khz sample rate",
+      "description": "Power ballads with soaring melodic phrasing and gospel-rooted expression"
+    },
+    {
+      "id": "mariah-carey",
+      "name": "Mariah Carey",
+      "era": "1990s",
+      "producer": "Walter Afanasieff",
+      "genres": ["pop", "R&B", "soul"],
+      "vocalType": "female American, five-octave range, light coloratura soprano",
+      "prompt": "pop, R&B, soul, melodic ballads, soaring vocal acrobatics, intricate harmonies, blend of pop gloss with gospel influence, female American vocals, five-octave range, light coloratura soprano, crystal-clear head voice, powerful belts, iconic melismatic phrasing, airy whispers, romantic, uplifting, emotional, dramatic, sensual, celebratory, lush pianos, smooth bass, layered synths, orchestral strings, gospel choirs, R&B grooves, sparkling pop production, lush 90s pop-R&B production style, polished and radiant, pristine clarity, balanced highs and lows, 24 bit resolution, 192 khz sample rate",
+      "description": "Melodic ballads with soaring vocal acrobatics and intricate harmonies"
+    },
+    {
+      "id": "taylor-swift",
+      "name": "Taylor Swift",
+      "era": "2010s",
+      "producer": "Jack Antonoff",
+      "genres": ["pop", "country", "folk", "alternative"],
+      "vocalType": "female American, light mezzo-soprano",
+      "prompt": "pop, country, folk, alternative, confessional songwriting, shifting from country storytelling to polished synth-pop, layered harmonies, lyrical narratives, female American vocals, light mezzo-soprano, clear and emotive tone, conversational phrasing, tender in ballads, bright in pop anthems, nostalgic, intimate, empowering, bittersweet, playful, dramatic, acoustic guitars, shimmering synths, steady pop drums, folk strings, piano-driven ballads, atmospheric pads, sleek modern pop-folk production style, polished and spacious, balanced lows and airy highs, wide stereo depth, 24 bit resolution, 192 khz sample rate",
+      "description": "Confessional songwriting shifting from country to polished synth-pop"
+    },
+    {
+      "id": "beyonce",
+      "name": "Beyoncé",
+      "era": "2010s",
+      "producer": "The Dream",
+      "genres": ["R&B", "pop", "hip-hop", "soul"],
+      "vocalType": "female American, mezzo-soprano",
+      "prompt": "R&B, pop, hip-hop, soul, genre-blending, intricate vocal layering, commanding grooves, feminist themes, bold experimentation with trap and soul, female American vocals, mezzo-soprano, rich and powerful with wide range, agile belts, soulful vibrato, fierce and emotive delivery, empowering, sensual, dramatic, confident, celebratory, intimate, deep basslines, trap-influenced beats, lush harmonies, orchestral flourishes, electronic synths, layered percussion, modern R&B-pop hybrid production style, bold and dynamic, club-ready punch, crisp highs, strong low end, 24 bit resolution, 192 khz sample rate",
+      "description": "Genre-blending with intricate vocal layering and commanding grooves"
+    },
+    {
+      "id": "rihanna",
+      "name": "Rihanna",
+      "era": "2010s",
+      "producer": "Stargate",
+      "genres": ["pop", "R&B", "dancehall", "electronic"],
+      "vocalType": "female Barbadian, mezzo-soprano with smoky timbre",
+      "prompt": "pop, R&B, dancehall, electronic, genre-blending hits, infectious hooks, sleek rhythms, Caribbean influences, edgy and modern production, female Barbadian vocals, mezzo-soprano with smoky timbre, flexible range, playful phrasing, sharp rhythmic delivery, distinctive Caribbean inflection, seductive, fierce, cool, confident, melancholic at times, stylish, dancehall-inspired beats, electronic synths, deep bass, crisp percussion, layered harmonies, occasional rock and trap elements, sleek 2010s pop-R&B production style, glossy and powerful, club-ready punch, wide stereo field, high clarity, 24 bit resolution, 192 khz sample rate",
+      "description": "Genre-blending with infectious hooks and Caribbean influences"
+    },
+    {
+      "id": "eminem",
+      "name": "Eminem",
+      "era": "2000s",
+      "producer": "Dr. Dre",
+      "genres": ["hip-hop", "rap", "pop rap"],
+      "vocalType": "male American, rapid-fire rap",
+      "prompt": "hip-hop, rap, pop rap, tight and aggressive, intricate rhyme schemes, cinematic storytelling, sharp dark humor, layered sample-based beats, male American vocals, rapid-fire rap, biting, sarcastic yet emotive, commanding presence, occasional melodic hooks, intense, confrontational, raw, humorous, reflective, urgent, drum machines, sample-heavy beats, orchestral stabs, subtle synth layers, deep bass-driven arrangements, polished with signature West Coast production style, punchy and clear, wide stereo field, crisp low end, high fidelity, 24 bit resolution, 192 khz sample rate",
+      "description": "Tight and aggressive with intricate rhyme schemes and cinematic storytelling"
+    },
+    {
+      "id": "ed-sheeran",
+      "name": "Ed Sheeran",
+      "era": "2010s",
+      "producer": "Benny Blanco",
+      "genres": ["pop", "folk-pop", "acoustic", "singer-songwriter"],
+      "vocalType": "male British, warm tenor",
+      "prompt": "pop, folk-pop, acoustic, singer-songwriter, intimate acoustic storytelling, catchy hooks, rhythmic guitar-driven grooves, heartfelt lyrics, modern pop polish, male British vocals, warm tenor, conversational tone, soft falsetto, emotive and intimate delivery, subtle rasp in belts, romantic, reflective, uplifting, bittersweet, warm, earnest, acoustic guitar, loop pedals, soft percussion, piano, layered harmonies, subtle electronic textures, polished modern acoustic-pop production style, clear and balanced, intimate vocal focus, smooth highs, rounded lows, 24 bit resolution, 192 khz sample rate",
+      "description": "Intimate acoustic storytelling with catchy hooks and guitar-driven grooves"
+    }
+  ],
+  "genreClouds": {
+    "rap": {
+      "name": "Rap/Hip-Hop Cluster",
+      "primary": "rap",
+      "relatedTags": ["hip hop", "trap", "boom bap", "bass", "beat", "drill", "emo rap", "conscious rap", "grime", "garage rap", "lo-fi hip hop", "cloud rap", "phonk", "jersey club", "trap soul"],
+      "gravitationalWeight": "VERY HIGH - defaults to pop-adjacent unless explicitly countered"
+    },
+    "rock": {
+      "name": "Rock Cluster",
+      "primary": "rock",
+      "relatedTags": ["alternative", "indie", "punk", "metal", "hard rock", "heavy metal", "death metal", "black metal", "grindcore", "mathcore", "metalcore", "progressive metal", "thrash metal", "glam rock", "punk rock", "post-punk", "gothic rock", "garage rock", "psychedelic rock", "blues rock", "folk rock", "country rock"],
+      "gravitationalWeight": "MEDIUM - can drift toward pop unless anchored"
+    },
+    "orchestral": {
+      "name": "Orchestral/Classical Cluster",
+      "primary": "orchestral",
+      "relatedTags": ["classical", "symphonic", "epic", "cinematic", "dramatic", "film score", "neo-classical", "baroque", "romantic era", "orchestral metal", "symphonic rock", "classical crossover"],
+      "gravitationalWeight": "LOW - resistant to pop drift"
+    },
+    "electronic": {
+      "name": "Electronic Cluster",
+      "primary": "electronic",
+      "relatedTags": ["synth", "synth-pop", "synthwave", "ambient", "experimental", "electro", "vaporwave", "chillwave", "drum and bass", "techno", "house", "trance", "dubstep", "bass", "industrial", "noise", "glitch", "IDM", "witch house"],
+      "gravitationalWeight": "MEDIUM-HIGH - pulls toward synth-pop unless countered"
+    },
+    "soul": {
+      "name": "Soul/R&B/Funk Cluster",
+      "primary": "soul",
+      "relatedTags": ["R&B", "funk", "gospel", "jazz", "blues", "jazz fusion", "smooth jazz", "neo-soul", "funk metal", "nu-funk"],
+      "gravitationalWeight": "LOW - resists pop drift well"
+    },
+    "pop": {
+      "name": "Pop Cluster (Axis Mundi)",
+      "primary": "pop",
+      "relatedTags": ["dance-pop", "electro-pop", "bubblegum pop", "pop-punk", "pop-rock", "indie pop", "synth-pop", "bedroom pop", "dark pop", "alternative pop", "art pop", "experimental pop"],
+      "gravitationalWeight": "EXTREME - pulls everything toward itself"
+    },
+    "country": {
+      "name": "Country/Folk Cluster",
+      "primary": "country",
+      "relatedTags": ["folk", "Americana", "bluegrass", "country-rock", "country-pop", "outlaw country", "alt-country", "progressive bluegrass"],
+      "gravitationalWeight": "MEDIUM - can drift toward pop unless anchored"
+    }
+  },
+  "producers": [
+    {
+      "name": "George Martin",
+      "era": "1960s-1970s",
+      "characteristics": "precise, polished, psychedelic-friendly, innovative",
+      "bestFor": ["rock", "pop", "psychedelic"]
+    },
+    {
+      "name": "Danger Mouse",
+      "era": "2000s-present",
+      "characteristics": "tight control, experimental, eclectic",
+      "bestFor": ["hip-hop", "electronic", "rock", "experimental"]
+    },
+    {
+      "name": "Brian Eno",
+      "era": "1970s-present",
+      "characteristics": "ambient, experimental, atmospheric",
+      "bestFor": ["ambient", "electronic", "experimental", "art rock"]
+    },
+    {
+      "name": "Quincy Jones",
+      "era": "1970s-1990s",
+      "characteristics": "polished, funk-friendly, perfect production",
+      "bestFor": ["pop", "funk", "R&B", "soul"]
+    },
+    {
+      "name": "Timbaland",
+      "era": "2000s-present",
+      "characteristics": "groove-focused, modern, rhythmic innovation",
+      "bestFor": ["pop", "R&B", "hip-hop", "electronic"]
+    },
+    {
+      "name": "Rick Rubin",
+      "era": "1980s-present",
+      "characteristics": "raw, minimal, clean, organic",
+      "bestFor": ["rock", "pop", "hip-hop", "reggae", "country"]
+    },
+    {
+      "name": "Phil Spector",
+      "era": "1960s-1970s",
+      "characteristics": "lush, orchestral, dramatic, wall of sound",
+      "bestFor": ["pop", "rock", "soul", "girl groups"]
+    }
+  ],
+  "studios": [
+    {
+      "name": "Abbey Road",
+      "location": "London, UK",
+      "characteristics": "precision, warmth, clarity",
+      "era": "1960s-present",
+      "famous_for": "The Beatles, Pink Floyd, other British rock legends"
+    },
+    {
+      "name": "Sun Studio",
+      "location": "Memphis, USA",
+      "characteristics": "warm tape, slapback echo, blues influence",
+      "era": "1950s-present",
+      "famous_for": "Elvis, Johnny Cash, pioneering rock and roll"
+    },
+    {
+      "name": "Motown Studios",
+      "location": "Detroit, USA",
+      "characteristics": "tight rhythm, orchestral arrangements, vintage soul",
+      "era": "1960s-present",
+      "famous_for": "Motown Records, soul and R&B legends"
+    },
+    {
+      "name": "Electric Lady Studios",
+      "location": "New York, USA",
+      "characteristics": "rock, vintage warmth, creative freedom",
+      "era": "1970s-present",
+      "famous_for": "Jimi Hendrix, Led Zeppelin, classic rock albums"
+    }
+  ],
+  "tags": {
+    "moods": [
+      "romantic", "melancholic", "introspective", "nostalgic", "bittersweet",
+      "emotional", "heartfelt", "soulful", "intimate", "vulnerable",
+      "energetic", "intense", "aggressive", "explosive", "dynamic", "vibrant",
+      "uplifting", "euphoric", "triumphant", "powerful",
+      "dreamlike", "ethereal", "mystical", "mysterious", "dark", "brooding",
+      "cinematic", "epic", "surreal", "transcendent", "meditative",
+      "playful", "whimsical", "experimental", "bold", "raw"
+    ],
+    "instrumentation": [
+      "acoustic guitar", "electric guitar", "jangly guitar", "distorted guitar",
+      "piano", "grand piano", "electric piano", "synthesizer", "synth pads",
+      "orchestral strings", "violin", "cello", "viola", "trumpet", "saxophone",
+      "drums", "drum machine", "bass guitar", "harp", "flute", "clarinet",
+      "brass section", "percussion", "layered effects", "tape loops"
+    ],
+    "production": [
+      "high-fidelity", "high-definition", "crystal-clear", "pristine",
+      "24-bit", "96kHz", "192kHz", "Dolby Atmos", "spatial audio",
+      "warm", "analog", "vintage", "tape saturation", "natural room reverb",
+      "wide stereo", "stereo panorama", "spacious", "surround sound",
+      "punchy", "crisp", "bold", "dynamic", "wide dynamic range"
+    ]
+  },
+  "searchIndexes": {
+    "byGenre": "Organize artists by primary genre",
+    "byEra": "Organize artists by decade",
+    "byProducer": "Find artists who worked with specific producers",
+    "byVocalType": "Find artists with similar vocal characteristics",
+    "byPromptKeyword": "Search prompt text for specific keywords or techniques"
+  }
+}

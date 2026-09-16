@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Suno Song Prompt Creator</title>
+<style>
+:root{--bg:#0f0f14;--card:#1a1a24;--accent:#8b5cf6;--accent2:#06b6d4;--text:#e5e7eb;--muted:#9ca3af;--border:#2d2d3d}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.5;min-height:100vh}
+header{background:linear-gradient(135deg,#1e1b4b,#312e81);padding:2rem 1rem;text-align:center;border-bottom:1px solid var(--border)}
+header h1{font-size:2.2rem;margin-bottom:.5rem;background:linear-gradient(90deg,#a78bfa,#22d3ee);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+header p{color:var(--muted);max-width:600px;margin:0 auto}
+nav{display:flex;gap:.5rem;justify-content:center;padding:1rem;background:#15151f;position:sticky;top:0;z-index:10;border-bottom:1px solid var(--border);flex-wrap:wrap}
+nav button{background:var(--card);border:1px solid var(--border);color:var(--text);padding:.6rem 1.2rem;border-radius:999px;cursor:pointer;transition:.2s}
+nav button.active,nav button:hover{background:var(--accent);border-color:var(--accent)}
+main{max-width:1100px;margin:0 auto;padding:2rem 1rem}
+.tab{display:none}
+.tab.active{display:block;animation:fadeIn .3s}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin-bottom:1.5rem}
+.card h2{margin-bottom:1rem;color:#c4b5fd}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
+label{display:block;font-size:.85rem;color:var(--muted);margin-bottom:.35rem;text-transform:uppercase;letter-spacing:.05em}
+input[type=text],select,textarea{width:100%;background:#0f0f14;border:1px solid var(--border);color:var(--text);padding:.7rem;border-radius:8px;font-size:1rem}
+textarea{min-height:100px;resize:vertical;font-family:inherit}
+.check-group{display:flex;flex-wrap:wrap;gap:.5rem}
+.check-group label{background:#0f0f14;border:1px solid var(--border);padding:.4rem .8rem;border-radius:999px;cursor:pointer;text-transform:none;letter-spacing:normal;font-size:.9rem;color:var(--text)}
+.check-group input{display:none}
+.check-group label:has(input:checked){background:var(--accent);border-color:var(--accent);color:white}
+.output{background:#0a0a0f;border:1px solid var(--accent);border-radius:8px;padding:1rem;white-space:pre-wrap;font-family:ui-monospace,monospace;min-height:120px;margin-top:1rem}
+.btn{background:var(--accent);color:white;border:none;padding:.7rem 1.4rem;border-radius:8px;cursor:pointer;font-size:1rem;margin-top:1rem;transition:.2s}
+.btn:hover{background:#7c3aed}
+.btn.secondary{background:#2d2d3d}
+.btn.small{padding:.4rem .8rem;font-size:.85rem;margin-top:.5rem}
+.char-count{font-size:.8rem;color:var(--muted);text-align:right;margin-top:.3rem}
+.warning{background:#451a03;border:1px solid #9a3412;border-radius:8px;padding:1rem;margin:1rem 0;color:#fdba74}
+.section-item{background:#0f0f14;border:1px solid var(--border);border-radius:8px;padding:1rem;margin-bottom:.8rem}
+.section-item h4{color:#67e8f9;margin-bottom:.5rem}
+.artist-card{background:#0f0f14;border:1px solid var(--border);border-radius:8px;padding:1rem;margin-bottom:1rem}
+.artist-card h3{color:#c4b5fd}
+.artist-card .meta{font-size:.85rem;color:var(--muted);margin:.3rem 0}
+.search-bar{margin-bottom:1.5rem}
+footer{text-align:center;padding:2rem;color:var(--muted);font-size:.85rem}
+.kbd{background:#2d2d3d;padding:.2rem .5rem;border-radius:4px;font-family:monospace;font-size:.9em}
+</style>
+</head>
+<body>
+<header>
+<h1>🎵 Suno Song Prompt Creator</h1>
+<p>Build perfect Suno AI prompts using the wisdom of the <strong>SUNO-Bible</strong>. Craft style prompts, structure lyrics with proper tags, and escape the Pop Gravity Well.</p>
+</header>
+<nav>
+<button class="active" onclick="showTab('style')">Style Builder</button>
+<button onclick="showTab('structure')">Song Structure</button>
+<button onclick="showTab('artists')">Artist Library</button>
+<button onclick="showTab('guide')">Bible Guide</button>
+</nav>
+<main>
+<!-- STYLE BUILDER -->
+<div id="tab-style" class="tab active">
+<div class="card">
+<h2>🎯 Universal Prompt Formula</h2>
+<p style="color:var(--muted);margin-bottom:1rem"><span class="kbd">decade, genre, subgenre, country, vocalist info, style + mood + instruments</span></p>
+<div class="grid">
+<div><label>Decade</label><select id="decade"><option value="">-- pick --</option><option>1950s</option><option>1960s</option><option>1970s</option><option>1980s</option><option>1990s</option><option>2000s</option><option>2010s</option><option>2020s</option></select></div>
+<div><label>Genre</label><select id="genre"><option value="">-- pick --</option><option>rock</option><option>pop</option><option>hip-hop</option><option>electronic</option><option>orchestral</option><option>soul</option><option>R&B</option><option>country</option><option>folk</option><option>metal</option><option>punk</option><option>jazz</option><option>blues</option><option>ambient</option><option>synthwave</option><option>progressive rock</option><option>indie</option><option>alternative</option></select></div>
+<div><label>Subgenre / Vibe</label><input type="text" id="subgenre" placeholder="e.g. psychedelic rock, boom bap"></div>
+<div><label>Country / Region</label><input type="text" id="country" placeholder="e.g. UK, US West Coast"></div>
+<div><label>Vocalist Gender</label><select id="vocalGender"><option value="">-- pick --</option><option>male</option><option>female</option><option>non-binary</option><option>instrumental (no vocals)</option></select></div>
+<div><label>Vocalist Detail</label><input type="text" id="vocalDetail" placeholder="e.g. British, soaring tenor"></div>
+<div><label>Production Style</label><input type="text" id="production" placeholder="e.g. warm analog, Abbey Road style"></div>
+<div><label>Tempo / Energy</label><select id="tempo"><option value="">-- pick --</option><option>slow and dreamy</option><option>mid-tempo groovy</option><option>upbeat energetic</option><option>fast and aggressive</option><option>epic and cinematic</option></select></div>
+</div>
+<div style="margin-top:1rem"><label>Mood (pick several)</label><div class="check-group" id="moods">
+<label><input type="checkbox" value="epic"> epic</label>
+<label><input type="checkbox" value="mystical"> mystical</label>
+<label><input type="checkbox" value="aggressive"> aggressive</label>
+<label><input type="checkbox" value="dreamy"> dreamy</label>
+<label><input type="checkbox" value="melancholic"> melancholic</label>
+<label><input type="checkbox" value="uplifting"> uplifting</label>
+<label><input type="checkbox" value="dark"> dark</label>
+<label><input type="checkbox" value="romantic"> romantic</label>
+<label><input type="checkbox" value="raw"> raw</label>
+<label><input type="checkbox" value="atmospheric"> atmospheric</label>
+</div></div>
+<div style="margin-top:1rem"><label>Instruments</label><div class="check-group" id="instruments">
+<label><input type="checkbox" value="distorted guitars"> guitars</label>
+<label><input type="checkbox" value="analog synths"> analog synths</label>
+<label><input type="checkbox" value="grand piano"> piano</label>
+<label><input type="checkbox" value="orchestral strings"> strings</label>
+<label><input type="checkbox" value="tight drum machines"> drum machines</label>
+<label><input type="checkbox" value="live drums"> live drums</label>
+<label><input type="checkbox" value="funky basslines"> bass</label>
+<label><input type="checkbox" value="brass stabs"> brass</label>
+<label><input type="checkbox" value="acoustic guitars"> acoustic</label>
+<label><input type="checkbox" value="tape effects"> tape fx</label>
+</div></div>
+</div>
+<div class="card">
+<h2>⚠️ Escape the Gravity Well</h2>
+<div class="warning">⚠️ <strong>Pop Gravity Well:</strong> Suno defaults to pop. If your target is NOT pop, explicitly exclude it!</div>
+<label>Exclusions (anti-pop armor)</label>
+<div class="check-group" id="exclusions">
+<label><input type="checkbox" value="no pop"> no pop</label>
+<label><input type="checkbox" value="no polished hooks"> no polished hooks</label>
+<label><input type="checkbox" value="no autotune"> no autotune</label>
+<label><input type="checkbox" value="no trap"> no trap</label>
+<label><input type="checkbox" value="no EDM drops"> no EDM drops</label>
+<label><input type="checkbox" value="raw and aggressive"> raw</label>
+</div>
+<div style="margin-top:1rem"><label>Custom exclusions / directives</label><input type="text" id="customEx" placeholder="e.g. no modern production, lo-fi grit"></div>
+<div style="margin-top:1rem">
+<button class="btn secondary small" onclick="randomize()">🎲 Randomize</button>
+<button class="btn secondary small" onclick="clearStyle()">Clear</button>
+</div>
+<h2 style="margin-top:1.5rem">✨ Generated Style Prompt</h2>
+<div class="output" id="styleOutput">Your prompt will appear here...</div>
+<div class="char-count" id="styleCount">0 / 1000 chars</div>
+<button class="btn" onclick="copyStyle()">📋 Copy Style Prompt</button>
+</div>
+</div>
+
+<!-- STRUCTURE -->
+<div id="tab-structure" class="tab">
+<div class="card">
+<h2>🏗️ Song Structure Builder</h2>
+<p style="color:var(--muted);margin-bottom:1rem">Use SUNO-Bible tags: <span class="kbd">[Intro]</span> <span class="kbd">[Verse]</span> <span class="kbd">[Chorus]</span> <span class="kbd">[Bridge]</span> <span class="kbd">[Solo]</span> etc. Add modifiers like <span class="kbd">[Dreamy Slow Intro]</span></p>
+<div class="grid">
+<div><label>Section Type</label><select id="secType"><option>[Intro]</option><option>[Verse]</option><option>[Pre-Chorus]</option><option>[Chorus]</option><option>[Hook]</option><option>[Bridge]</option><option>[Break]</option><option>[Interlude]</option><option>[Solo]</option><option>[Instrumental]</option><option>[Build]</option><option>[Outro]</option><option>[End]</option></select></div>
+<div><label>Modifier (optional)</label><input type="text" id="secMod" placeholder="e.g. Dreamy Slow, Haunting Whispered"></div>
+</div>
+<div style="margin-top:1rem"><label>Lyrics for this section (use ... ! (parenthesis) ooooh for expression)</label><textarea id="secLyrics" placeholder="Write lyrics here...&#10;Use (parenthesis) for call-and-response&#10;Use ... for slow pacing&#10;Use ooooh ahhh for vocalizations"></textarea></div>
+<button class="btn" onclick="addSection()">➕ Add Section</button>
+<button class="btn secondary" onclick="loadTemplate()">📝 Load Template: Verse-Chorus</button>
+</div>
+<div class="card">
+<h2>📜 Sections</h2>
+<div id="sectionsList"><p style="color:var(--muted)">No sections yet. Add one above.</p></div>
+<h2 style="margin-top:1.5rem">🎼 Full Tagged Lyrics</h2>
+<div class="output" id="lyricsOutput">...</div>
+<div class="char-count" id="lyricsCount">0 / 5000 chars</div>
+<button class="btn" onclick="copyLyrics()">📋 Copy Lyrics</button>
+<button class="btn secondary" onclick="clearSections()">Clear All</button>
+</div>
+</div>
+
+<!-- ARTISTS -->
+<div id="tab-artists" class="tab">
+<div class="card">
+<h2>🎤 Artist Inspiration Library</h2>
+<p style="color:var(--muted);margin-bottom:1rem">From SUNO-Bible artist-database.json — click "Use" to load into Style Builder.</p>
+<div class="search-bar"><input type="text" id="artistSearch" placeholder="🔍 Search artists, genres, eras..." oninput="renderArtists()"></div>
+<div id="artistList">Loading...</div>
+</div>
+</div>
+
+<!-- GUIDE -->
+<div id="tab-guide" class="tab">
+<div class="card">
+<h2>📖 SUNO-Bible Quick Guide</h2>
+<h3 style="margin:1rem 0 .5rem;color:#67e8f9">1. Style-Mesh Theory</h3>
+<p>Suno doesn't pick genres discretely. Styles are statistical clusters. Tags like <span class="kbd">rap ↔ trap ↔ bass ↔ hip hop</span> pull together. Choose tags from the same cloud for coherence, or stack distant genres for uniqueness.</p>
+<h3 style="margin:1rem 0 .5rem;color:#67e8f9">2. Pop Gravity Well</h3>
+<p>Pop is the ontological center. Everything drifts toward pop unless you exclude it. <strong>Rule:</strong> If not making pop, add <span class="kbd">no pop, no polished hooks, raw</span>.</p>
+<h3 style="margin:1rem 0 .5rem;color:#67e8f9">3. Prompt Formula</h3>
+<p><span class="kbd">decade, genre, subgenre, country, vocalist info, style + mood + instruments</span><br>Example: <em>1970s, rock, progressive rock, UK, male British vocals, epic and mystical, lush guitars, analog synths</em></p>
+<h3 style="margin:1rem 0 .5rem;color:#67e8f9">4. Lyric Tags</h3>
+<p>Valid base tags: <span class="kbd">[Intro]</span> <span class="kbd">[Verse]</span> <span class="kbd">[Pre-Chorus]</span> <span class="kbd">[Chorus]</span> <span class="kbd">[Bridge]</span> <span class="kbd">[Solo]</span> <span class="kbd">[Interlude]</span> <span class="kbd">[Break]</span> <span class="kbd">[Outro]</span> <span class="kbd">[End]</span></p>
+<ul style="margin-left:1.2rem;color:var(--muted)">
+<li><strong>Modifiers:</strong> Add emotion + pace: <span class="kbd">[Haunting Whispered Pre-Chorus]</span></li>
+<li><strong>Breaks:</strong> Specify instrument: <span class="kbd">[Violin Break]</span></li>
+<li><strong>Expression:</strong> <span class="kbd">...</span> slows, <span class="kbd">!</span> emphasizes, <span class="kbd">(parenthesis)</span> = call-response, <span class="kbd">ooooh</span> = vocalizations</li>
+<li><strong>Instrumentals:</strong> Use <span class="kbd">. . . !</span> rhythm patterns under [Interlude]</li>
+</ul>
+<h3 style="margin:1rem 0 .5rem;color:#67e8f9">5. Sacred Strategies</h3>
+<ul style="margin-left:1.2rem;color:var(--muted)">
+<li>Avoid gravity wells: don't use <span class="kbd">pop, bass, beat, hook, catchy</span> unless essential</li>
+<li>Force exclusions: <span class="kbd">"90s hip hop, boom bap, no trap, no modern production"</span></li>
+<li>Be concrete: <span class="kbd">distorted guitars</span> beats <span class="kbd">nice guitars</span></li>
+</ul>
+<p style="margin-top:1rem;color:var(--muted)">Full wisdom lives in <a href="https://github.com/xerohour/SUNO-Bible" style="color:#a78bfa">xerohour/SUNO-Bible</a></p>
+</div>
+</div>
+</main>
+<footer>Built from the SUNO-Bible • Craft, copy, create in Suno AI • MIT</footer>
+<script>
+let sections=[];
+let artistDB=[];
+function showTab(id){
+document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+document.getElementById('tab-'+id).classList.add('active');
+event.target.classList.add('active');
+}
+function getChecked(id){return [...document.querySelectorAll('#'+id+' input:checked')].map(i=>i.value)}
+function buildStyle(){
+const parts=[];
+const d=document.getElementById('decade').value; if(d) parts.push(d);
+const g=document.getElementById('genre').value; if(g) parts.push(g);
+const s=document.getElementById('subgenre').value.trim(); if(s) parts.push(s);
+const c=document.getElementById('country').value.trim(); if(c) parts.push(c);
+const vg=document.getElementById('vocalGender').value;
+const vd=document.getElementById('vocalDetail').value.trim();
+if(vg){ if(vg.includes('instrumental')) parts.push('instrumental'); else parts.push((vd?vd+' ':'')+vg+' vocals'); }
+else if(vd) parts.push(vd);
+const t=document.getElementById('tempo').value; if(t) parts.push(t);
+const moods=getChecked('moods'); if(moods.length) parts.push(moods.join(', '));
+const inst=getChecked('instruments'); if(inst.length) parts.push(inst.join(', '));
+const prod=document.getElementById('production').value.trim(); if(prod) parts.push(prod);
+const ex=getChecked('exclusions'); const cx=document.getElementById('customEx').value.trim();
+let excl=[...ex]; if(cx) excl.push(cx);
+let prompt=parts.join(', ');
+if(excl.length) prompt+=(prompt?', ':'')+excl.join(', ');
+const out=document.getElementById('styleOutput');
+out.textContent=prompt||'Your prompt will appear here...';
+document.getElementById('styleCount').textContent=`${prompt.length} / 1000 chars`;
+localStorage.setItem('sunoStyle',JSON.stringify({d,g,s,c,vg,vd,t,prod,cx}));
+}
+['decade','genre','subgenre','country','vocalGender','vocalDetail','production','tempo','customEx'].forEach(id=>{
+document.getElementById(id).addEventListener('input',buildStyle);
+});
+document.querySelectorAll('#moods input,#instruments input,#exclusions input').forEach(i=>i.addEventListener('change',buildStyle));
+function copyStyle(){navigator.clipboard.writeText(document.getElementById('styleOutput').textContent);alert('Style prompt copied!')}
+function randomize(){
+const decades=['1970s','1980s','1990s','2000s'];const genres=['rock','electronic','hip-hop','orchestral','soul','metal','ambient'];
+document.getElementById('decade').value=decades[Math.floor(Math.random()*decades.length)];
+document.getElementById('genre').value=genres[Math.floor(Math.random()*genres.length)];
+buildStyle();
+}
+function clearStyle(){document.querySelectorAll('input[type=text],textarea').forEach(i=>{if(i.id!=='secLyrics') i.value=''});document.querySelectorAll('select').forEach(s=>s.selectedIndex=0);document.querySelectorAll('input[type=checkbox]').forEach(c=>c.checked=false);buildStyle();}
+function addSection(){
+const type=document.getElementById('secType').value;
+const mod=document.getElementById('secMod').value.trim();
+const lyrics=document.getElementById('secLyrics').value.trim();
+let tag=type;
+if(mod){ tag='['+mod+' '+type.replace('[','').replace(']','')+']'; }
+sections.push({tag,lyrics});
+document.getElementById('secMod').value='';document.getElementById('secLyrics').value='';
+renderSections();
+}
+function renderSections(){
+const list=document.getElementById('sectionsList');
+if(!sections.length){list.innerHTML='<p style="color:var(--muted)">No sections yet.</p>';}
+else{list.innerHTML=sections.map((s,i)=>`<div class="section-item"><h4>${s.tag} <button class="btn secondary small" style="float:right" onclick="delSec(${i})">✕</button></h4><div style="white-space:pre-wrap;color:var(--muted)">${s.lyrics||'<i>instrumental</i>'}</div></div>`).join('');}
+const full=sections.map(s=>s.tag+(s.lyrics?'\n'+s.lyrics:'')).join('\n\n');
+document.getElementById('lyricsOutput').textContent=full||'...';
+document.getElementById('lyricsCount').textContent=`${full.length} / 5000 chars`;
+localStorage.setItem('sunoSections',JSON.stringify(sections));
+}
+function delSec(i){sections.splice(i,1);renderSections();}
+function clearSections(){sections=[];renderSections();}
+function copyLyrics(){navigator.clipboard.writeText(document.getElementById('lyricsOutput').textContent);alert('Lyrics copied!')}
+function loadTemplate(){
+sections=[
+{tag:'[Intro]',lyrics:''},
+{tag:'[Verse]',lyrics:'Write your verse here...\n(whispered echo)'},
+{tag:'[Pre-Chorus]',lyrics:'Building up...'},
+{tag:'[Chorus]',lyrics:'Your big hook here!\nooooh yeah!'},
+{tag:'[Verse]',lyrics:'Second verse...'},
+{tag:'[Chorus]',lyrics:'Your big hook here!\nooooh yeah!'},
+{tag:'[Bridge]',lyrics:'Break it down...'},
+{tag:'[Chorus]',lyrics:'Final chorus!'},
+{tag:'[Outro]',lyrics:''},
+];
+renderSections();
+}
+async function loadArtists(){
+try{
+const r=await fetch('artist-database.json');const j=await r.json();artistDB=j.artists||[];
+}catch(e){artistDB=[];}
+renderArtists();
+}
+function renderArtists(){
+const q=(document.getElementById('artistSearch').value||'').toLowerCase();
+const list=document.getElementById('artistList');
+const filtered=artistDB.filter(a=>(a.name+' '+(a.genres||[]).join(' ')+' '+a.era).toLowerCase().includes(q)).slice(0,50);
+if(!filtered.length){list.innerHTML='<p style="color:var(--muted)">No artists found.</p>';return;}
+list.innerHTML=filtered.map(a=>`<div class="artist-card"><h3>${a.name}</h3><div class="meta">${a.era} • ${(a.genres||[]).join(', ')} • ${a.vocalType||''}</div><div style="font-size:.9rem;color:var(--muted);margin:.5rem 0">${(a.prompt||'').substring(0,180)}...</div><button class="btn small" onclick="useArtist('${a.id}')">Use this prompt</button></div>`).join('');
+}
+function useArtist(id){
+const a=artistDB.find(x=>x.id===id);if(!a) return;
+document.getElementById('styleOutput').textContent=a.prompt;
+document.getElementById('styleCount').textContent=`${a.prompt.length} / 1000 chars`;
+showTab('style');window.scrollTo(0,0);alert(`Loaded ${a.name} prompt into Style Builder!`);
+}
+// init
+buildStyle();renderSections();loadArtists();
+</script>
+</body>
+</html>
