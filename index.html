@@ -117,7 +117,7 @@ footer{text-align:center;padding:2rem;color:var(--muted);font-size:.85rem}
 <h2 style="margin-top:1.5rem">✨ Generated Style Prompt</h2>
 <div class="output" id="styleOutput">Your prompt will appear here...</div>
 <div class="char-count" id="styleCount">0 / 1000 chars</div>
-<button class="btn" onclick="copyStyle()">📋 Copy Style Prompt</button>
+<button class="btn" onclick="copyStyle(this)">📋 Copy Style Prompt</button>
 </div>
 </div>
 
@@ -140,7 +140,7 @@ footer{text-align:center;padding:2rem;color:var(--muted);font-size:.85rem}
 <h2 style="margin-top:1.5rem">🎼 Full Tagged Lyrics</h2>
 <div class="output" id="lyricsOutput">...</div>
 <div class="char-count" id="lyricsCount">0 / 5000 chars</div>
-<button class="btn" onclick="copyLyrics()">📋 Copy Lyrics</button>
+<button class="btn" onclick="copyLyrics(this)">📋 Copy Lyrics</button>
 <button class="btn secondary" onclick="clearSections()">Clear All</button>
 </div>
 </div>
@@ -221,7 +221,7 @@ localStorage.setItem('sunoStyle',JSON.stringify({d,g,s,c,vg,vd,t,prod,cx}));
 document.getElementById(id).addEventListener('input',buildStyle);
 });
 document.querySelectorAll('#moods input,#instruments input,#exclusions input').forEach(i=>i.addEventListener('change',buildStyle));
-function copyStyle(){navigator.clipboard.writeText(document.getElementById('styleOutput').textContent);alert('Style prompt copied!')}
+function copyStyle(btn){navigator.clipboard.writeText(document.getElementById('styleOutput').textContent);const orig=btn.innerHTML;btn.innerHTML='✅ Copied!';setTimeout(()=>{btn.innerHTML=orig;},2000);}
 function pick(a){return a[Math.floor(Math.random()*a.length)];}
 function pickN(a,n){const c=[...a];const out=[];while(out.length<n&&c.length){out.push(c.splice(Math.floor(Math.random()*c.length),1)[0]);}return out;}
 function randomize(){
@@ -279,7 +279,7 @@ localStorage.setItem('sunoSections',JSON.stringify(sections));
 }
 function delSec(i){sections.splice(i,1);renderSections();}
 function clearSections(){sections=[];renderSections();}
-function copyLyrics(){navigator.clipboard.writeText(document.getElementById('lyricsOutput').textContent);alert('Lyrics copied!')}
+function copyLyrics(btn){navigator.clipboard.writeText(document.getElementById('lyricsOutput').textContent);const orig=btn.innerHTML;btn.innerHTML='✅ Copied!';setTimeout(()=>{btn.innerHTML=orig;},2000);}
 function loadTemplate(){
 sections=[
 {tag:'[Intro]',lyrics:''},
